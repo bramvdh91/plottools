@@ -17,34 +17,42 @@
 #    along with plotcolor.  If not, see <http://www.gnu.org/licenses/>.
 ######################################################################################
 
+from cycler import cycler
 import matplotlib.pyplot as plt
 
 
-basecolors = {	't1':'#3bc7b0','t2':'#39b19e',
-				'g1':'#0dc872','g2':'#48bb7f',
-				'b1':'#1f81b9','b2':'#2b9adb',
-				'p1':'#a66fdb','p2':'#c097cf',
-				'd1':'#253b4d','d2':'#39566f',
-				'y1':'#f3cd3f','y2':'#f6af3f',
-				'o1':'#e87f1d','o2':'#dd772f',
-				'r1':'#c23b24','r2':'#ed7262',
-				'l1':'#7e8c8d','l2':'#9cacad' }
-basecycle = ['d1','b1','r1','g1','y1','t1','o1','p1','l1','d2','b2','r2','g2','y2','t2','o2','p2','l2']
+# colors derived from http://www.stonesc.com
+basecolors = {'b': ( 57./255,106./255,177./255),
+			  'o': (218./255,124./255, 48./255),
+			  'g': ( 62./255,150./255, 81./255),
+			  'r': (204./255, 37./255, 41./255),
+			  'k': ( 83./255, 81./255, 84./255),
+			  'p': (107./255, 76./255,154./255),
+			  'd': (146./255, 36./255, 40./255),
+			  'y': (148./255,139./255, 61./255)}
+basecycle = ['b','o','g','r','k','p','d','y']
+
+lightcolors = {'b': (114./255,147./255,203./255),
+			   'o': (225./255,151./255, 76./255),
+			   'g': (132./255,186./255, 91./255),
+			   'r': (211./255, 94./255, 96./255),
+			   'k': (128./255,133./255,133./255),
+			   'p': (144./255,103./255,167./255),
+			   'd': (171./255,104./255, 87./255),
+			   'y': (204./255,194./255, 16./255)}
 
 class Color(object):
 	def __init__(self,colors=basecolors,cycle=basecycle):
 		self.colors = colors
 		self.cycle = cycle
 		self.currentindex = 0
-		
-		self.set_default_cycle()
 	
 	def set_default_cycle(self):
 		"""
 		set the default axes color cycle
 		"""
-		plt.rc('axes',color_cycle=[self.colors[c] for c in self.cycle])
-	
+		plt.rc('axes',prop_cycle=cycler('color', [self.colors[c] for c in self.cycle]) )
+
 	def next(self):
 		"""
 		get the next color in the cycle
