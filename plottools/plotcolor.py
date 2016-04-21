@@ -1,25 +1,23 @@
 ﻿#!/usr/bin/python
 ######################################################################################
 #    Copyright 2015 Brecht Baeten
-#    This file is part of plotcolor.
+#    This file is part of plottools.
 #
-#    plotcolor is free software: you can redistribute it and/or modify
+#    plottools is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
 #    (at your option) any later version.
 #
-#    plotcolor is distributed in the hope that it will be useful,
+#    plottools is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with plotcolor.  If not, see <http://www.gnu.org/licenses/>.
+#    along with plottools.  If not, see <http://www.gnu.org/licenses/>.
 ######################################################################################
 
 from cycler import cycler
-import matplotlib.pyplot as plt
-
 
 # colors derived from http://www.stonesc.com
 basecolors = {'b': ( 57./255,106./255,177./255),
@@ -41,17 +39,12 @@ lightcolors = {'b': (114./255,147./255,203./255),
 			   'd': (171./255,104./255, 87./255),
 			   'y': (204./255,194./255, 16./255)}
 
+
 class Color(object):
 	def __init__(self,colors=basecolors,cycle=basecycle):
 		self.colors = colors
 		self.cycle = cycle
 		self.currentindex = 0
-	
-	def set_default_cycle(self):
-		"""
-		set the default axes color cycle
-		"""
-		plt.rc('axes',prop_cycle=cycler('color', [self.colors[c] for c in self.cycle]) )
 
 	def next(self):
 		"""
