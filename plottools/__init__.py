@@ -18,13 +18,14 @@
 ######################################################################################
 
 import matplotlib.pyplot as plt
+from cycler import cycler
 
 from plottools import *
 import plotcolor
 import cm
 
 color = plotcolor.Color()
-lightcolor = Color(colors=lightcolors)
+lightcolor = plotcolor.Color(colors=plotcolor.lightcolors)
 
 # set the default color cycle
 plt.rc('axes',prop_cycle=cycler('color', [plotcolor.basecolors[c] for c in plotcolor.basecycle]) )			   

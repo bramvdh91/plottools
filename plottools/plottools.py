@@ -18,9 +18,17 @@
 ######################################################################################
 
 import matplotlib.pyplot as plt
+import numpy as np
 
-def zoom_axis(fig,ax,zoom_x,zoom_y,axis_x,axis_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axis=20):
-    """"
+def set_publication_rc():
+	plt.rc('text', usetex=True)
+	plt.rc('font', family='serif')
+	plt.rc('figure', autolayout=True)
+	plt.rc('legend', fontsize=10)
+
+	
+def zoom_axes(fig,ax,zoom_x,zoom_y,axis_x,axis_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axis=20):
+    """
     Creates a new axis which zooms in on a part of a given axis
     
     Arguments:
@@ -36,7 +44,7 @@ def zoom_axis(fig,ax,zoom_x,zoom_y,axis_x,axis_y,box=True,box_color='k',box_alph
 	
 	Example:
 	
-    """"
+    """
 	
     plt.tight_layout()
     ax1_p0 = (ax.transData + fig.transFigure.inverted()).transform_point((axis_x[0],axis_y[0]))

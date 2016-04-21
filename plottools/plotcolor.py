@@ -17,7 +17,6 @@
 #    along with plottools.  If not, see <http://www.gnu.org/licenses/>.
 ######################################################################################
 
-from cycler import cycler
 
 # colors derived from http://www.stonesc.com
 basecolors = {'b': ( 57./255,106./255,177./255),
