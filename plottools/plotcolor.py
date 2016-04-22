@@ -27,7 +27,6 @@ basecolors = {'b': ( 57./255,106./255,177./255),
 			  'p': (107./255, 76./255,154./255),
 			  'd': (146./255, 36./255, 40./255),
 			  'y': (148./255,139./255, 61./255)}
-basecycle = ['b','o','g','r','k','p','d','y']
 
 lightcolors = {'b': (114./255,147./255,203./255),
 			   'o': (225./255,151./255, 76./255),
@@ -38,9 +37,33 @@ lightcolors = {'b': (114./255,147./255,203./255),
 			   'd': (171./255,104./255, 87./255),
 			   'y': (204./255,194./255, 16./255)}
 
+basecycle = ['b','o','g','r','k','p','d','y']			   
+			   
 
-class Color(object):
+color = Colorscheme()
+lightcolor = Colorscheme(colors=lightcolors)
+
+# color class
+class Colorscheme(object):
 	def __init__(self,colors=basecolors,cycle=basecycle):
+		"""
+		defines a colorscheme object useful for plotting
+		
+		Arguments:
+		colors: dict, dictionary of named colors as RGB (0-1) tupples
+		cycle:  list, list with the cycle order
+		
+		Example:
+		cs = Colorscheme({'r':(1.,0.,0.),'g':(0.,1.,0.),'b':(0.,0.,1.)},['b','g','r'])
+		print( cs[0] )
+		
+		print( cs.next() )
+		print( cs.next() )
+		
+		cs.reset_index()
+		print( cs.next() )
+		"""
+		
 		self.colors = colors
 		self.cycle = cycle
 		self.currentindex = 0
@@ -57,7 +80,18 @@ class Color(object):
 		return c
 		
 	def reset_index(self):
+		"""
+		resets the current color index to 0
+		"""
+		
 		self.currentindex = 0
+	
+	def set_as_default(self):
+		"""
+		sets the colorscheme as the default color cycle in matplotlib figures
+		"""
+		
+		plt.rc('axes',prop_cycle=cycler('color', [self.colors[c] for c in self.cycle]) )
 		
 	def __getitem__(self,key):
 		if isinstance(key,int):

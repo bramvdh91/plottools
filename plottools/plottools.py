@@ -27,28 +27,28 @@ def set_publication_rc():
 	plt.rc('legend', fontsize=10)
 
 	
-def zoom_axes(fig,ax,zoom_x,zoom_y,axis_x,axis_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axis=20):
+def zoom_axes(fig,ax,zoom_x,zoom_y,axes_x,axes_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axes=20):
     """
-    Creates a new axis which zooms in on a part of a given axis
+    Creates a new axes which zooms in on a part of a given axes
     
     Arguments:
     fig: 		matplotlib figure
-	ax: 		matplotlib axis
+	ax: 		matplotlib axes
 	zoom_x:		list, specifying the zooming horizontal area
 	zoom_y:		list, specifying the zooming vertical area
-	axis_x:		list, specifying the new axis horizontal location in data coordinates
-	axis_y:		list, specifying the new axis vertical location in data coordinates
+	axes_x:		list, specifying the new axes horizontal location in data coordinates
+	axes_y:		list, specifying the new axes vertical location in data coordinates
 	
 	Returns:
-	ax1: 		a new axis
+	ax1: 		a new axes
 	
 	Example:
 	
     """
 	
     plt.tight_layout()
-    ax1_p0 = (ax.transData + fig.transFigure.inverted()).transform_point((axis_x[0],axis_y[0]))
-    ax1_p1 = (ax.transData + fig.transFigure.inverted()).transform_point((axis_x[1],axis_y[1]))
+    ax1_p0 = (ax.transData + fig.transFigure.inverted()).transform_point((axes_x[0],axes_y[0]))
+    ax1_p1 = (ax.transData + fig.transFigure.inverted()).transform_point((axes_x[1],axes_y[1]))
 
     ax1 = plt.axes([ax1_p0[0],ax1_p0[1],ax1_p1[0]-ax1_p0[0],ax1_p1[1]-ax1_p0[1]])
     
@@ -65,20 +65,20 @@ def zoom_axes(fig,ax,zoom_x,zoom_y,axis_x,axis_y,box=True,box_color='k',box_alph
     if connect:
         # estimate the width of the ticks
         spacing_zoom = (ax.transData.inverted()).transform_point((spacing_zoom,0))[0]-(ax.transData.inverted()).transform_point((0,0))[0]
-        spacing_axis = (ax.transData.inverted()).transform_point((spacing_axis,0))[0]-(ax.transData.inverted()).transform_point((0,0))[0]
+        spacing_axes = (ax.transData.inverted()).transform_point((spacing_axes,0))[0]-(ax.transData.inverted()).transform_point((0,0))[0]
 
-        if zoom_x[1] < axis_x[0]:
+        if zoom_x[1] < axes_x[0]:
             # the zoom box is on the left
-            x_connect = [zoom_x[1] + spacing_zoom , axis_x[0] - spacing_axis]
-            y_connect_bot = np.interp(x_connect,[zoom_x[1],axis_x[0]],[zoom_y[0],axis_y[0]])
-            y_connect_top = np.interp(x_connect,[zoom_x[1],axis_x[0]],[zoom_y[1],axis_y[1]])
+            x_connect = [zoom_x[1] + spacing_zoom , axes_x[0] - spacing_axes]
+            y_connect_bot = np.interp(x_connect,[zoom_x[1],axes_x[0]],[zoom_y[0],axes_y[0]])
+            y_connect_top = np.interp(x_connect,[zoom_x[1],axes_x[0]],[zoom_y[1],axes_y[1]])
 
         else:
             # the zoom box is on the right
             # the zoom box is on the left
-            x_connect = [axis_x[1] + 0.5*spacing_axis , zoom_x[0] - spacing_zoom]
-            y_connect_bot = np.interp(x_connect,[axis_x[1],zoom_x[0]],[axis_y[0],zoom_y[0]])
-            y_connect_top = np.interp(x_connect,[axis_x[1],zoom_x[0]],[axis_y[1],zoom_y[1]])
+            x_connect = [axes_x[1] + 0.5*spacing_axes , zoom_x[0] - spacing_zoom]
+            y_connect_bot = np.interp(x_connect,[axes_x[1],zoom_x[0]],[axes_y[0],zoom_y[0]])
+            y_connect_top = np.interp(x_connect,[axes_x[1],zoom_x[0]],[axes_y[1],zoom_y[1]])
             
         ax.plot(x_connect,y_connect_bot,color=connect_color,alpha=connect_alpha)
         ax.plot(x_connect,y_connect_top,color=connect_color,alpha=connect_alpha)
