@@ -1,2 +1,2 @@
-# plotcolor
-Some nice default color cycles for plotting
+# plottools
+Tools which come in handy for plotting with matplotlib in python
