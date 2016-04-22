@@ -17,9 +17,6 @@
 #    along with plottools.  If not, see <http://www.gnu.org/licenses/>.
 ######################################################################################
 
-import matplotlib.pyplot as plt
-from cycler import cycler
-
 from plottools import *
-import plotcolor import *
+from plotcolor import *
 import cm

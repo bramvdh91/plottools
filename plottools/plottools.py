@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/python
-######################################################################################
+################################################################################
 #    Copyright 2015 Brecht Baeten
 #    This file is part of plottools.
 #
@@ -15,7 +15,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with plottools.  If not, see <http://www.gnu.org/licenses/>.
-######################################################################################
+################################################################################
 
 import matplotlib.pyplot as plt
 import numpy as np

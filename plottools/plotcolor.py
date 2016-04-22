@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/python
-######################################################################################
+################################################################################
 #    Copyright 2015 Brecht Baeten
 #    This file is part of plottools.
 #
@@ -15,9 +15,14 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with plottools.  If not, see <http://www.gnu.org/licenses/>.
-######################################################################################
+################################################################################
 
+import matplotlib.pyplot as plt
+from cycler import cycler
 
+################################################################################
+# Color definitions
+################################################################################
 # colors derived from http://www.stonesc.com
 basecolors = {'b': ( 57./255,106./255,177./255),
 			  'o': (218./255,124./255, 48./255),
@@ -37,13 +42,12 @@ lightcolors = {'b': (114./255,147./255,203./255),
 			   'd': (171./255,104./255, 87./255),
 			   'y': (204./255,194./255, 16./255)}
 
-basecycle = ['b','o','g','r','k','p','d','y']			   
-			   
+basecycle = ['b','o','g','r','k','p','d','y']	
 
-color = Colorscheme()
-lightcolor = Colorscheme(colors=lightcolors)
 
-# color class
+################################################################################
+# Colorscheme class 
+################################################################################
 class Colorscheme(object):
 	def __init__(self,colors=basecolors,cycle=basecycle):
 		"""
@@ -101,3 +105,10 @@ class Colorscheme(object):
 			self.currentindex = self.cycle.index(key)+1
 			return self.colors[key]
 
+				   
+			   
+################################################################################
+# create default color schemes
+################################################################################
+color = Colorscheme()
+lightcolor = Colorscheme(colors=lightcolors)
