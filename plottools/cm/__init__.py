@@ -19,20 +19,32 @@
 
 import sys
 import os
+import numbers
+import numpy as np
 
 from hotwater import hotwater
 from coldhot import coldhot
 
 
-def cm2svg(colormap,filename):
+def cm2svg(colormap,filename,stops=3):
 	"""
 	creates a svg file with the colormap defined as a gradient
+	
+	Arguments:
+	colormap: 	a matplotlib colormap instance
+	filename: 	string, the file to write the svg file to
+	stops=3:	int or list fo floats, number of stops to use in the gradient or the position of the stops in the range of 0.0 to 1.0
+	
+	Example:
+	plottools.cm.cm2svg(plottools.cm.hotwater,'hotwater.svg',stops=5)
 	"""
+	
+	# input handling
+	if isinstance(stops, numbers.Number):
+		stops = np.linspace(0.0,1.0,max(2,stops))
 	
 	
 	# get the colors of the colormap at the stops
-	stops = [0.00,0.25,0.50,0.75,1.00]
-	svg_stops = ['#{:06.0f}'.format(s*100) for s in stops]
 	colors = ['#{:02x}{:02x}{:02x}'.format(int(colormap(s)[0]*255),int(colormap(s)[1]*255),int(colormap(s)[2]*255)) for s in stops]
 
 	
@@ -41,13 +53,20 @@ def cm2svg(colormap,filename):
 
 	# open the cm_blank svg file
 	blank_file = open(os.path.join(modulepath,'cm_blank.svg'), 'r') 
-	contents = blank_file.read()
+	content = blank_file.read()
 	blank_file.close()
 
+	# find the index where the stops must come
+	ind = content.find('    </linearGradient>')
+	before = content[:ind]
+	after = content[ind:]
 	
-	for s,c in zip(svg_stops,colors):
-		contents = contents.replace(s,c)
+	new_content = before
+	for s,c in zip(stops,colors):
+		new_content = new_content + '      <stop id="stop{:04.0f}" offset="{:.3f}" style="stop-color:{};stop-opacity:1;" />\n'.format(s*1000,s,c)
+
+	new_content = new_content+after
 	
 	new_file = open(filename, 'w')
-	new_file.write(contents)
+	new_file.write(new_content)
 	new_file.close()

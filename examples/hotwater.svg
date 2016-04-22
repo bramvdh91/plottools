@@ -18,6 +18,11 @@
   <defs
      id="gradientDefinition">
     <linearGradient id="linearGradientCM">
+      <stop id="stop0000" offset="0.000" style="stop-color:#100c34;stop-opacity:1;" />
+      <stop id="stop0250" offset="0.250" style="stop-color:#4c0967;stop-opacity:1;" />
+      <stop id="stop0500" offset="0.500" style="stop-color:#870a68;stop-opacity:1;" />
+      <stop id="stop0750" offset="0.750" style="stop-color:#c2064c;stop-opacity:1;" />
+      <stop id="stop1000" offset="1.000" style="stop-color:#fa140d;stop-opacity:1;" />
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
