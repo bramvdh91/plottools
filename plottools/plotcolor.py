@@ -101,18 +101,3 @@ class Colorscheme(object):
 			self.currentindex = self.cycle.index(key)+1
 			return self.colors[key]
 
-
-# definition of the colors
-#basic = {'g':'#2ecc71',
-#	     'b':'#3498db',
-#		 'p':'#9b59b6',
-#		 'd':'#6c7a89',
-#		 'y':'#f2ca27',
-#		 'o':'#e67e22',
-#		 'r':'#e74c3c'}
-
-
-		  
-
-
-
