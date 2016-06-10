@@ -23,12 +23,13 @@ import numpy as np
 def set_publication_rc():
 	plt.rc('figure', autolayout=True)
 	plt.rc('savefig',bbox='tight',pad_inches=0.01)
-	plt.rc('axes', linewidth=0.6)
+	plt.rc('font', family='serif', size=6)
+	plt.rc('axes', linewidth=0.4,labelsize=8)
 	plt.rc('axes.formatter', useoffset=False)
 	plt.rc('legend', fontsize=8, frameon=True)
 	plt.rc('lines', linewidth=0.8,markersize=4)
 	plt.rc('text', usetex=True)
-	plt.rc('font', family='serif', size=8)
+	
 	
 def zoom_axes(fig,ax,zoom_x,zoom_y,axes_x,axes_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axes=20):
 	"""
