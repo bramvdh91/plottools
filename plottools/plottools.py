@@ -21,14 +21,25 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def set_publication_rc():
+	# figure
 	plt.rc('figure', autolayout=True)
-	plt.rc('savefig',bbox='tight',pad_inches=0.01)
-	plt.rc('font', family='serif', size=6)
-	plt.rc('axes', linewidth=0.4,labelsize=8)
+	plt.rc('savefig', format='pdf', dpi=150, bbox='tight', pad_inches=0.01)
+	# font
+	plt.rc('font', family='serif', serif=['computer modern roman'], size=6)
+	# axes
+	plt.rc('axes', linewidth=0.4, labelsize=8)
 	plt.rc('axes.formatter', useoffset=False)
+	# legend
 	plt.rc('legend', fontsize=8, frameon=True)
+	# lines
 	plt.rc('lines', linewidth=0.8,markersize=4)
+	# text
 	plt.rc('text', usetex=True)
+	# ticks
+	plt.rc('xtick.major', size=3, width=0.3, pad=3)
+	plt.rc('ytick.major', size=3, width=0.3, pad=3)
+	plt.rc('xtick.minor', size=2, width=0.3, pad=3)
+	plt.rc('ytick.minor', size=2, width=0.3, pad=3)
 	
 	
 def zoom_axes(fig,ax,zoom_x,zoom_y,axes_x,axes_y,box=True,box_color='k',box_alpha=0.8,connect=True,connect_color='k',connect_alpha=0.3,spacing_zoom=2,spacing_axes=20):
