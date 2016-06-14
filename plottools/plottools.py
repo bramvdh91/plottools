@@ -23,7 +23,7 @@ import numpy as np
 def set_publication_rc():
     # figure
     plt.rc('figure', autolayout=True)
-    plt.rc('savefig', format='pdf', dpi=150, bbox='tight', pad_inches=0.01)
+    plt.rc('savefig', format='pdf', dpi=300, bbox='tight', pad_inches=0.01)
     # font
     plt.rc('font', family='serif', serif=['computer modern roman'], size=6)
     # axes
